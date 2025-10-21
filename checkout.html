@@ -94,7 +94,7 @@
             <!-- Delivery Form -->
             <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
                 <h2 class="text-xl font-semibold mb-4">Delivery Details</h2>
-                <form name="order-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-4">
+                <form name="order-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" netlify data-success="thankyou.html" class="space-y-4">
                     <input type="hidden" name="cart" id="cart-data">
                     <div>
                         <label for="name" class="block text-sm font-medium mb-2">Full Name</label>
@@ -131,19 +131,35 @@
     <!-- Scripts -->
     <script src="script.js"></script>
     <script>
-        // Form Submit Handler (Optional: Clear cart on success, show notif)
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.querySelector('form[name="order-form"]');
             if (form) {
-                form.addEventListener('submit', () => {
+                form.addEventListener('submit', (e) => {
+                    // Prep cart data before submit
                     document.getElementById('cart-data').value = JSON.stringify(getCart());
-                    // Clear cart after submit (local only—Netlify emails it)
+                });
+
+                // Netlify success callback (fires after server ACK)
+                form.addEventListener('netlifyformsubmit', () => {
                     cart = [];
                     localStorage.setItem('cart', JSON.stringify(cart));
                     updateCartCount();
-                    showNotification('Order placed! Check your email for confirmation.');
+                    updateOrderSummary();
+                    showNotification('Order placed successfully! Check your email.');
+                    // setTimeout(() => { window.location.href = 'index.html'; }, 2000);  // No longer needed
+                });
+
+                // Netlify error callback
+                form.addEventListener('netlifyformerror', (e) => {
+                    console.error('Form error:', e.detail);
+                    showNotification('Submit failed—try again or check console.');
                 });
             }
+            
+            // Init
+            initDarkMode();
+            initSearch();
+            updateOrderSummary();
         });
     </script>
 </body>

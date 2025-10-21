@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed - My COD Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'alibaba-red': '#df0017',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+    <!-- Header (same as others) -->
+    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <a href="index.html"><h1 class="text-2xl font-bold text-alibaba-red">MyCOD Shop</h1></a>
+            </div>
+            <nav class="flex items-center space-x-6">
+                <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-alibaba-red">Home</a>
+                <a href="cart.html" class="text-gray-700 dark:text-gray-300 hover:text-alibaba-red">Cart (<span id="cart-count" class="font-semibold">0</span>)</a>
+                <a href="admin.html" class="text-gray-700 dark:text-gray-300 hover:text-alibaba-red">Admin</a>
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">
+                    <svg id="sun-icon" class="h-5 w-5 text-yellow-500 hidden" fill="currentColor" viewBox="0 0 20 20"><!-- Sun path --></svg>
+                    <svg id="moon-icon" class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><!-- Moon path --></svg>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Success Section -->
+    <main class="container mx-auto px-4 py-12 text-center">
+        <svg class="mx-auto h-16 w-16 text-green-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+        <h1 class="text-3xl font-bold mb-4">Order Confirmed!</h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">Thanks for your order. We'll deliver via COD—expect it soon!</p>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-8">Check your email for details. Questions? <a href="contact.html" class="text-alibaba-red hover:underline">Contact us</a>.</p>
+        <a href="index.html" class="bg-alibaba-red hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold transition">Continue Shopping</a>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-gray-800 py-8 mt-auto">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 MyCOD Shop. All rights reserved. | COD Only</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initDarkMode();
+            updateCartCount();  // Should be 0 post-submit
+        });
+    </script>
+</body>
+</html>
