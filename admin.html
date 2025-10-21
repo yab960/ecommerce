@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Price Editor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Panel: Update Prices</h1>
+        <nav>
+            <a href="index.html">Back to Shop</a>
+        </nav>
+    </header>
+
+    <div id="password-prompt" style="text-align: center; padding: 50px;">
+        <h2>Enter Admin Password</h2>
+        <input type="password" id="admin-pass" placeholder="Password">
+        <button onclick="checkPassword()">Login</button>
+        <p id="pass-error" style="color: red; display: none;">Wrong password!</p>
+    </div>
+
+    <div id="admin-content" style="display: none;">
+        <section>
+            <h2>Edit Products</h2>
+            <button onclick="loadProducts()">Reload from JSON</button>
+            <button onclick="saveProducts()">Download Updated JSON</button>
+            <table id="product-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price ($)</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="product-tbody">
+                    <!-- Loaded dynamically -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>  <!-- New: Admin-specific JS -->
+</body>
+</html>

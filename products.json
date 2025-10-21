@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Charchol Humidifirer",
+    "price": 3000,
+    "image": "images/charchol humidifirer.jpg",
+    "description": "A charcoal humidifier is a decorative cool-mist device designed to mimic a flickering charcoal fire with ambient LED lights, adding gentle humidity to the air while creating a cozy, relaxing vibe for bedrooms or living spaces.",
+    "rating":"4.5 (120)"
+    
+  },
+  {
+    "name": "Nose Clip",
+    "price": 500,
+    "image": "images/nose clip.jpg",
+    "description": "Soft, breathable t-shirt.",
+    "rating":"4.5 (120)"
+  },
+  {
+    "name": "Sky Box",
+    "price": 3000,
+    "image": "images/sky box.jpg",
+    "description": "Durable bag for travel.",
+    "rating":"4.5 (120)"
+  }
+]

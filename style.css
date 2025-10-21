@@ -1,0 +1,178 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --border-color: #ddd;
+  --header-bg: #ffffff;
+  --product-bg: #ffffff;
+  --button-bg: #007bff;
+  --table-header-bg: #f2f2f2;
+  --input-bg: #ffffff;
+  --input-border: #ccc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --border-color: #444;
+    --header-bg: #2a2a2a;
+    --product-bg: #2a2a2a;
+    --button-bg: #0056b3;
+    --table-header-bg: #3a3a3a;
+    --input-bg: #3a3a3a;
+    --input-border: #555;
+  }
+}
+
+body { 
+  font-family: Arial, sans-serif; 
+  margin: 0; 
+  padding: 20px; 
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+header { 
+  text-align: center; 
+  border-bottom: 1px solid var(--border-color); 
+  padding-bottom: 10px;
+  background-color: var(--header-bg);
+}
+
+nav a { 
+  margin: 0 10px; 
+  text-decoration: none; 
+  color: var(--text-color);
+}
+
+nav a:hover {
+  color: #007bff;
+}
+
+.product-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  gap: 20px; 
+}
+
+.product { 
+  border: 1px solid var(--border-color); 
+  padding: 10px; 
+  text-align: center; 
+  background-color: var(--product-bg);
+}
+
+button { 
+  background: var(--button-bg); 
+  color: white; 
+  border: none; 
+  padding: 10px; 
+  cursor: pointer; 
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+#cart-items { 
+  margin: 20px 0; 
+}
+
+form { 
+  max-width: 400px; 
+}
+
+label { 
+  display: block; 
+  margin: 10px 0; 
+  color: var(--text-color);
+}
+
+input, textarea { 
+  width: 100%; 
+  padding: 5px; 
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--text-color);
+}
+
+@media (max-width: 600px) { 
+  .product-grid { 
+    grid-template-columns: 1fr; 
+  } 
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    top: -50px;  /* Hidden above screen initially */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745;  /* Green color */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;  /* On top of everything */
+    opacity: 0;
+    transition: all 0.3s ease-in-out;  /* Smooth slide and fade */
+    max-width: 300px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.notification.show {
+    top: 20px;  /* Slide down to visible position */
+    opacity: 1;
+}
+
+/* Mobile-friendly */
+@media (max-width: 600px) {
+    .notification {
+        left: 10px;
+        right: 10px;
+        max-width: none;
+        transform: none;  /* Full width on small screens */
+    }
+}
+
+/* Admin Table Styles */
+#admin-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: var(--bg-color);
+}
+
+#admin-content th, #admin-content td {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    text-align: left;
+    color: var(--text-color);
+}
+
+#admin-content th {
+    background-color: var(--table-header-bg);
+}
+
+#admin-content input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid var(--input-border);
+    box-sizing: border-box;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+#admin-content button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+#add-product {
+    background: var(--button-bg);
+}
