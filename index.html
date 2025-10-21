@@ -105,30 +105,50 @@
     <!-- Scripts -->
     <script src="script.js"></script>
     <script>
-        // Mobile Keyboard Fix: Only padding for keyboard, no auto-scroll on keystroke
+        // Mobile Keyboard Fix: Precise padding using Visual Viewport API (no per-keystroke scroll)
         document.addEventListener('DOMContentLoaded', () => {
             const searchInput = document.getElementById('search-input');
-            let initialHeight = window.innerHeight;
             let keyboardPadding = false;
 
-            // No input listener for scroll—let user manual scroll or swipe
-
-            // Detect keyboard open/close via resize
-            window.addEventListener('resize', () => {
-                const currentHeight = window.innerHeight;
-                if (currentHeight < initialHeight * 0.9) {  // Keyboard open
-                    if (!keyboardPadding) {
-                        document.body.style.paddingBottom = '50vh';  // Push up for visibility
+            // Visual Viewport API for accurate keyboard height (better than resize)
+            if ('visualViewport' in window) {
+                const vv = window.visualViewport;
+                vv.addEventListener('resize', () => {
+                    const keyboardHeight = window.innerHeight - vv.height;
+                    if (keyboardHeight > 100) {  // Threshold for keyboard open
+                        document.body.style.paddingBottom = `${keyboardHeight}px`;
                         keyboardPadding = true;
-                    }
-                } else {  // Keyboard closed
-                    if (keyboardPadding) {
+                    } else {
                         document.body.style.paddingBottom = '0';
                         keyboardPadding = false;
                     }
-                }
-                initialHeight = currentHeight;
-            });
+                });
+            } else {
+                // Fallback to resize listener
+                let initialHeight = window.innerHeight;
+                window.addEventListener('resize', () => {
+                    const currentHeight = window.innerHeight;
+                    if (currentHeight < initialHeight * 0.9) {
+                        if (!keyboardPadding) {
+                            document.body.style.paddingBottom = '50vh';
+                            keyboardPadding = true;
+                        }
+                    } else {
+                        if (keyboardPadding) {
+                            document.body.style.paddingBottom = '0';
+                            keyboardPadding = false;
+                        }
+                    }
+                    initialHeight = currentHeight;
+                });
+            }
+
+            // Optional: Scroll input into view on focus (gentle, only if needed)
+            if (searchInput) {
+                searchInput.addEventListener('focus', () => {
+                    searchInput.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
         });
     </script>
 </body>
