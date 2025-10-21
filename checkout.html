@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - My COD Shop</title>
+    <title data-en="Checkout - My COD Shop" data-am="የክፍያ ማድረግ - የኔ ኮዲ ማዳበሪያ">Checkout - My COD Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,41 +20,43 @@
 </head>
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
     <!-- Notification -->
-    <div id="notification" class="notification hidden fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-green-500 dark:bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg transition-all duration-300 ease-in-out">
+    <div id="notification" class="notification hidden fixed top-4 left-4 right-4 sm:left-1/2 sm:transform sm:-translate-x-1/2 z-50 bg-green-500 dark:bg-green-600 text-white px-4 py-3 sm:px-6 sm:py-3 rounded-lg shadow-lg transition-all duration-300 ease-in-out text-sm sm:max-w-md" data-en="Order placed successfully!" data-am="ትዕዛዝ በተሳካ ሁኔታ ተቀበለ!">
         Order placed successfully!
     </div>
 
     <!-- Header: AliExpress-inspired with search and cart -->
     <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-40">
-        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div class="container mx-auto px-4 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
             <!-- Logo -->
-            <div class="flex items-center space-x-2">
+            <div class="flex items-center space-x-2 flex-shrink-0">
                 <a href="index.html">
-                    <h1 class="text-2xl font-bold text-alibaba-red">MyCOD Shop</h1>
+                    <h1 class="text-xl sm:text-2xl font-bold text-alibaba-red" data-en="MyCOD Shop" data-am="የኔ ኮዲ ማዳበሪያ">MyCOD Shop</h1>
                 </a>
             </div>
             
-            <!-- Search Bar -->
-            <div class="flex-1 max-w-md mx-8">
+            <!-- Search Bar - Full-width on mobile -->
+            <div class="w-full sm:w-auto sm:flex-1 sm:max-w-md sm:mx-4">
                 <div class="relative">
-                    <input type="text" id="search-input" placeholder="Search products..." class="w-full px-4 py-2 pl-10 pr-4 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-alibaba-red">
-                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <input type="text" id="search-input" placeholder="Search products..." class="w-full px-3 py-2 sm:pl-10 sm:pr-4 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-alibaba-red text-sm sm:text-base" data-placeholder-en="Search products..." data-placeholder-am="ምርቶችን ፍለጋ...">
+                    <svg class="absolute hidden sm:block left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                 </div>
             </div>
             
-            <!-- Nav & Cart -->
-            <nav class="flex items-center space-x-6">
-                <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-alibaba-red">Home</a>
-                <a href="cart.html" class="text-gray-700 dark:text-gray-300 hover:text-alibaba-red">Cart (<span id="cart-count" class="font-semibold">0</span>)</a>
-                <a href="admin.html" class="text-gray-700 dark:text-gray-300 hover:text-alibaba-red">Admin</a>
+            <!-- Nav & Cart - Stack on mobile -->
+            <nav class="flex items-center space-x-2 sm:space-x-6 w-full sm:w-auto justify-center sm:justify-end">
+                <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-alibaba-red text-sm sm:text-base" data-en="Home" data-am="መነሻ">Home</a>
+                <a href="cart.html" class="text-gray-700 dark:text-gray-300 hover:text-alibaba-red text-sm sm:text-base" data-en="Cart" data-am="ተሸከምካች">Cart (<span id="cart-count" class="font-semibold">0</span>)</a>
+                <a href="admin.html" class="text-gray-700 dark:text-gray-300 hover:text-alibaba-red text-sm sm:text-base" data-en="Admin" data-am="አስተዳዳሪ">Admin</a>
+                <!-- Language Toggle -->
+                <button id="lang-toggle" class="p-1.5 sm:p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-xs sm:text-sm" data-en="አማ" data-am="EN">አማ</button>
                 <!-- Dark Mode Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">
-                    <svg id="sun-icon" class="h-5 w-5 text-yellow-500 hidden" fill="currentColor" viewBox="0 0 20 20">
+                <button id="theme-toggle" class="p-1.5 sm:p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">
+                    <svg id="sun-icon" class="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500 hidden" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
                     </svg>
-                    <svg id="moon-icon" class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg id="moon-icon" class="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                     </svg>
                 </button>
@@ -63,99 +65,151 @@
     </header>
 
     <!-- Checkout Section -->
-    <main class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-8">Checkout - Cash on Delivery</h1>
+    <main class="container mx-auto px-4 py-6 sm:py-8">
+        <h1 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8" data-en="Checkout - Cash on Delivery" data-am="የክፍያ ማድረግ - በደረስ ክፍያ">Checkout - Cash on Delivery</h1>
         
         <!-- Empty Cart Redirect -->
-        <div id="empty-cart" class="text-center py-12 hidden">
-            <p class="text-gray-500 dark:text-gray-400 mb-4">Your cart is empty. Add items to proceed.</p>
-            <a href="index.html" class="bg-alibaba-red hover:bg-red-700 text-white px-6 py-3 rounded-full font-semibold transition">Back to Shop</a>
+        <div id="empty-cart" class="text-center py-8 sm:py-12 hidden">
+            <p class="text-gray-500 dark:text-gray-400 mb-4 text-sm sm:text-base" data-en="Your cart is empty. Add items to proceed." data-am="ተሸከምካችዎ ባዶ ነው። ለመቀጠል ንጥሎችን ያክሉ።">Your cart is empty. Add items to proceed.</p>
+            <a href="index.html" class="bg-alibaba-red hover:bg-red-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold transition text-sm sm:text-base" data-en="Back to Shop" data-am="ወደ ሱቅ ተመለስ">Back to Shop</a>
         </div>
 
-        <!-- Checkout Form & Summary (AliExpress-style two-column) -->
-        <div id="checkout-content" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Checkout Form & Summary -->
+        <div id="checkout-content" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
             <!-- Order Summary -->
-            <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
-                <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
-                <div id="order-items" class="space-y-3 mb-6"></div>
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 sm:p-6">
+                <h2 class="text-lg sm:text-xl font-semibold mb-4" data-en="Order Summary" data-am="የትዕዛዝ ማጠቃለያ">Order Summary</h2>
+                <div id="order-items" class="space-y-3 mb-4 sm:mb-6"></div>
                 <div class="border-t pt-4">
-                    <div class="flex justify-between text-lg mb-2">
-                        <span>Subtotal:</span>
+                    <div class="flex justify-between text-base sm:text-lg mb-2">
+                        <span data-en="Subtotal:" data-am="የግብይት ጠረጴዛ:">Subtotal:</span>
                         <span id="subtotal">$0.00</span>
                     </div>
-                    <div class="flex justify-between text-xl font-bold text-alibaba-red">
-                        <span>Total:</span>
+                    <div class="flex justify-between text-lg sm:text-xl font-bold text-alibaba-red">
+                        <span data-en="Total:" data-am="ጠቅላላ:">Total:</span>
                         <span id="total">$0.00</span>
                     </div>
-                    <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">Free Delivery on orders over 500etb</p>
+                    <p class="text-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-2 sm:mt-4" data-en="Free Delivery on orders over 500etb" data-am="ከ500 ኤቲቢ በላይ ነፃ ዝርዝር">Free Delivery on orders over 500etb</p>
                 </div>
             </div>
 
             <!-- Delivery Form -->
-            <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
-                <h2 class="text-xl font-semibold mb-4">Delivery Details</h2>
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 sm:p-6">
+                <h2 class="text-lg sm:text-xl font-semibold mb-4" data-en="Delivery Details" data-am="የመላኪያ ዝርዝሮች">Delivery Details</h2>
                 <form name="order-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" netlify data-success="thankyou.html" class="space-y-4">
                     <input type="hidden" name="cart" id="cart-data">
                     <div>
-                        <label for="name" class="block text-sm font-medium mb-2">Full Name</label>
-                        <input type="text" id="name" name="name" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-alibaba-red">
+                        <label for="name" class="block text-xs sm:text-sm font-medium mb-2" data-en="Full Name" data-am="ሙሉ ስም">Full Name</label>
+                        <input type="text" id="name" name="name" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-alibaba-red text-sm sm:text-base">
                     </div>
                     <div>
-                        <label for="address" class="block text-sm font-medium mb-2">Delivery Address</label>
-                        <textarea id="address" name="address" rows="3" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-alibaba-red"></textarea>
+                        <label for="address" class="block text-xs sm:text-sm font-medium mb-2" data-en="Delivery Address" data-am="የመላኪያ አድራሻ">Delivery Address</label>
+                        <textarea id="address" name="address" rows="3" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-alibaba-red text-sm sm:text-base"></textarea>
                     </div>
                     <div>
-                        <label for="phone" class="block text-sm font-medium mb-2">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-alibaba-red">
+                        <label for="phone" class="block text-xs sm:text-sm font-medium mb-2" data-en="Phone Number" data-am="ስልክ ቁጥር">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-alibaba-red text-sm sm:text-base">
                     </div>
                     <div>
-                        <label for="notes" class="block text-sm font-medium mb-2">Order Notes (Optional)</label>
-                        <textarea id="notes" name="notes" rows="2" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-alibaba-red"></textarea>
+                        <label for="notes" class="block text-xs sm:text-sm font-medium mb-2" data-en="Order Notes (Optional)" data-am="የትዕዛዝ ማስታወሻዎች (አማራጭ)">Order Notes (Optional)</label>
+                        <textarea id="notes" name="notes" rows="2" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-alibaba-red text-sm sm:text-base"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-alibaba-red hover:bg-red-700 text-white py-3 rounded-full font-semibold transition">
-                        Place Order (COD)
-                    </button>
+                    <button type="submit" class="w-full bg-alibaba-red hover:bg-red-700 text-white py-2 sm:py-3 rounded-full font-semibold transition text-sm sm:text-base" data-en="Place Order (COD)" data-am="ትዕዛዝ ያስቀምጡ (ኮዲ)">Place Order (COD)</button>
                 </form>
             </div>
         </div>
     </main>
 
     <!-- Footer: Simple -->
-    <footer class="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 Elroi Market. All rights reserved. | COD Only</p>
-            <p>developed by yabsra  <a class="underline" href="yabsra.netlify.app">click here</a></p>
+    <footer class="bg-gray-100 dark:bg-gray-800 py-6 sm:py-8 mt-12">
+        <div class="container mx-auto px-4 text-center text-sm sm:text-base">
+            <p data-en="&copy; 2025 Elroi Market. All rights reserved. | COD Only" data-am="&copy; 2025 ኤልሮይ ማርኬት። ሁሉም መብቶች የተጠበቀ። | በደረስ ክፍያ">&copy; 2025 Elroi Market. All rights reserved. | COD Only</p>
+            <p class="mt-2">developed by yabsra <a class="underline" href="yabsra.netlify.app">click here</a></p>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="script.js"></script>
     <script>
+        // Language Toggle & Mobile Keyboard Fix
         document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('lang-toggle');
+            let currentLang = 'en';  // Default English
+
+            function switchLanguage(lang) {
+                document.querySelectorAll('[data-en]').forEach(el => {
+                    if (el.textContent.trim() === el.getAttribute(`data-${currentLang}`)?.trim()) {
+                        el.textContent = el.getAttribute(`data-${lang}`);
+                    }
+                });
+                document.querySelectorAll('[data-placeholder-en]').forEach(el => {
+                    el.placeholder = el.getAttribute(`data-placeholder-${lang}`);
+                });
+                document.title = document.querySelector('title').getAttribute(`data-${lang}`);
+                currentLang = lang;
+                langToggle.textContent = lang === 'en' ? 'አማ' : 'EN';
+            }
+
+            if (langToggle) {
+                langToggle.addEventListener('click', () => {
+                    switchLanguage(currentLang === 'en' ? 'am' : 'en');
+                });
+            }
+
+            // Mobile Keyboard Fix: Precise padding using Visual Viewport API
+            const searchInput = document.getElementById('search-input');
+            const formInputs = document.querySelectorAll('input, textarea');
+            if ('visualViewport' in window) {
+                const vv = window.visualViewport;
+                vv.addEventListener('resize', () => {
+                    const keyboardHeight = window.innerHeight - vv.height;
+                    if (keyboardHeight > 100) {  // Keyboard open
+                        document.body.style.paddingBottom = `${keyboardHeight}px`;
+                    } else {
+                        document.body.style.paddingBottom = '0';
+                    }
+                });
+            } else {
+                let initialHeight = window.innerHeight;
+                window.addEventListener('resize', () => {
+                    const currentHeight = window.innerHeight;
+                    if (currentHeight < initialHeight * 0.9) {
+                        document.body.style.paddingBottom = '50vh';
+                    } else {
+                        document.body.style.paddingBottom = '0';
+                    }
+                    initialHeight = currentHeight;
+                });
+            }
+
+            // Scroll input into view on focus
+            formInputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            });
+
+            // Form Submission
             const form = document.querySelector('form[name="order-form"]');
             if (form) {
                 form.addEventListener('submit', (e) => {
-                    // Prep cart data before submit
                     document.getElementById('cart-data').value = JSON.stringify(getCart());
                 });
 
-                // Netlify success callback (fires after server ACK)
                 form.addEventListener('netlifyformsubmit', () => {
                     cart = [];
                     localStorage.setItem('cart', JSON.stringify(cart));
                     updateCartCount();
                     updateOrderSummary();
-                    showNotification('Order placed successfully! Check your email.');
-                    // setTimeout(() => { window.location.href = 'index.html'; }, 2000);  // No longer needed
+                    showNotification(currentLang === 'en' ? 'Order placed successfully! Check your email.' : 'ትዕዛዝ በተሳካ ሁኔታ ተቀበለ! ኢሜልዎን ያረጋግጡ።');
                 });
 
-                // Netlify error callback
                 form.addEventListener('netlifyformerror', (e) => {
                     console.error('Form error:', e.detail);
-                    showNotification('Submit failed—try again or check console.');
+                    showNotification(currentLang === 'en' ? 'Submit failed—try again or check console.' : 'ማስገባት አልተሳካም—እንደገና ይሞክሩ ወይም ኮንሶልን ያረጋግጡ።');
                 });
             }
-            
+
             // Init
             initDarkMode();
             initSearch();
