@@ -105,26 +105,53 @@
     <!-- Scripts -->
     <script src="script.js"></script>
     <script>
-        // Mobile Keyboard Fix: Add padding to body when search input focused (keyboard open)
+        // Mobile Keyboard Fix: Scroll to results on search input, add padding for keyboard
         document.addEventListener('DOMContentLoaded', () => {
             const searchInput = document.getElementById('search-input');
+            const productGrid = document.getElementById('product-grid');
+            const productsTitle = document.getElementById('products-title');
+            let initialHeight = window.innerHeight;
+            let keyboardPadding = false;
+
             if (searchInput) {
+                // On input (searching), scroll to products section (below header/hero)
+                searchInput.addEventListener('input', (e) => {
+                    const query = e.target.value;
+                    if (query.length > 0) {
+                        // Small delay for render, then scroll to products
+                        setTimeout(() => {
+                            if (productGrid && productsTitle) {
+                                productsTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        }, 100);
+                    }
+                });
+
+                // On focus, optional gentle scroll if needed
                 searchInput.addEventListener('focus', () => {
-                    // Scroll to top to ensure header stays visible
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    // Don't force top scroll—let user position
                 });
             }
 
-            // Listen for resize (keyboard open/close)
-            let initialHeight = window.innerHeight;
+            // Detect keyboard open/close via resize
             window.addEventListener('resize', () => {
                 const currentHeight = window.innerHeight;
-                if (currentHeight < initialHeight * 0.9) {  // Keyboard likely open
-                    document.body.style.paddingBottom = '40vh';  // Push content up
-                    document.documentElement.style.height = '100vh';  // Lock height
-                } else {
-                    document.body.style.paddingBottom = '0';
-                    document.documentElement.style.height = 'auto';
+                if (currentHeight < initialHeight * 0.9) {  // Keyboard open
+                    if (!keyboardPadding) {
+                        document.body.style.paddingBottom = '50vh';  // Push up more for results visibility
+                        keyboardPadding = true;
+                        // Scroll to results if searching
+                        if (searchInput && searchInput.value.length > 0) {
+                            setTimeout(() => {
+                                productsTitle?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, 200);
+                        }
+                    }
+                } else {  // Keyboard closed
+                    if (keyboardPadding) {
+                        document.body.style.paddingBottom = '0';
+                        keyboardPadding = false;
+                    }
                 }
                 initialHeight = currentHeight;
             });
