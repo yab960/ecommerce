@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elroi Shop - Affordable Essentials</title>
+    <title data-en="Elroi Shop - Affordable Essentials" data-am="ኤልሮይ ማርኬት - በትክክል የሚገባ መሰረታዊ ነገሮች">Elroi Shop - Affordable Essentials</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,7 +20,7 @@
 </head>
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
     <!-- Notification -->
-    <div id="notification" class="notification hidden fixed top-4 left-4 right-4 sm:left-1/2 sm:transform sm:-translate-x-1/2 z-50 bg-green-500 dark:bg-green-600 text-white px-4 py-3 sm:px-6 sm:py-3 rounded-lg shadow-lg transition-all duration-300 ease-in-out text-sm sm:max-w-md">
+    <div id="notification" class="notification hidden fixed top-4 left-4 right-4 sm:left-1/2 sm:transform sm:-translate-x-1/2 z-50 bg-green-500 dark:bg-green-600 text-white px-4 py-3 sm:px-6 sm:py-3 rounded-lg shadow-lg transition-all duration-300 ease-in-out text-sm sm:max-w-md" data-en="Item added to cart!" data-am="ንጥል ወደ ተሸከምካች ተጨምሯል!">
         Item added to cart!
     </div>
 
@@ -29,13 +29,13 @@
         <div class="container mx-auto px-4 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0">
             <!-- Logo -->
             <div class="flex items-center space-x-2 flex-shrink-0">
-                <h1 class="text-xl sm:text-2xl font-bold text-alibaba-red">Elroi Market</h1>
+                <h1 class="text-xl sm:text-2xl font-bold text-alibaba-red" data-en="Elroi Market" data-am="ኤልሮይ ማርኬት">Elroi Market</h1>
             </div>
             
-            <!-- Search Bar - Hidden on mobile, full-width on small, max on larger -->
+            <!-- Search Bar - Full-width on mobile -->
             <div class="w-full sm:w-auto sm:flex-1 sm:max-w-md sm:mx-4">
                 <div class="relative">
-                    <input type="text" id="search-input" placeholder="Search products..." class="w-full px-3 py-2 sm:pl-10 sm:pr-4 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-alibaba-red">
+                    <input type="text" id="search-input" placeholder="Search products..." class="w-full px-3 py-2 sm:pl-10 sm:pr-4 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-alibaba-red" data-placeholder-en="Search products..." data-placeholder-am="ምርቶችን ፍለጋ...">
                     <svg class="absolute hidden sm:block left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
@@ -44,13 +44,15 @@
             
             <!-- Nav & Cart - Stack on mobile -->
             <nav class="flex items-center space-x-2 sm:space-x-6 w-full sm:w-auto justify-center sm:justify-end">
-                <a href="cart.html" class="flex items-center text-gray-700 dark:text-gray-300 hover:text-alibaba-red space-x-1 text-sm sm:text-base">
+                <a href="cart.html" class="flex items-center text-gray-700 dark:text-gray-300 hover:text-alibaba-red space-x-1 text-sm sm:text-base" data-en="Cart" data-am="ተሸከምካች">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 8.5h12.974c.576 0 1.059.435 1.119.993M8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0z" />
                     </svg>
                     <span>Cart (<span id="cart-count" class="font-semibold">0</span>)</span>
                 </a>
-                <a href="admin.html" class="text-gray-700 dark:text-gray-300 hover:text-alibaba-red text-sm sm:text-base">Admin</a>
+                <a href="admin.html" class="text-gray-700 dark:text-gray-300 hover:text-alibaba-red text-sm sm:text-base" data-en="Admin" data-am="አስተዳዳሪ">Admin</a>
+                <!-- Language Toggle -->
+                <button id="lang-toggle" class="p-1.5 sm:p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-xs sm:text-sm" data-en="አማ" data-am="EN">አማ</button>
                 <!-- Dark Mode Toggle -->
                 <button id="theme-toggle" class="p-1.5 sm:p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600">
                     <svg id="sun-icon" class="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500 hidden" fill="currentColor" viewBox="0 0 20 20">
@@ -67,17 +69,17 @@
     <!-- Hero Banner: Simple AliExpress-style promo -->
     <section class="bg-gradient-to-r from-alibaba-red to-red-600 text-white py-8 sm:py-12">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-2xl sm:text-4xl font-bold mb-4">Discover Amazing Deals!</h2>
-            <p class="text-lg sm:text-xl mb-6">Cash on Delivery | Free Delivery on Orders Over 500etb</p>
-            <button class="bg-white text-alibaba-red px-6 py-2 sm:px-8 sm:py-3 rounded-full font-semibold hover:bg-gray-100 transition text-sm sm:text-base">Shop Now</button>
+            <h2 class="text-2xl sm:text-4xl font-bold mb-4" data-en="Discover Amazing Deals!" data-am="አስደናቂ ገበያዎችን ይገነቡ!">Discover Amazing Deals!</h2>
+            <p class="text-lg sm:text-xl mb-6" data-en="Cash on Delivery | Free Delivery on Orders Over 500etb" data-am="በደረስ ክፍያ | ከ500 ኤቲቢ በላይ ነፃ ዝርዝር">Cash on Delivery | Free Delivery on Orders Over 500etb</p>
+            <button class="bg-white text-alibaba-red px-6 py-2 sm:px-8 sm:py-3 rounded-full font-semibold hover:bg-gray-100 transition text-sm sm:text-base" data-en="Shop Now" data-am="አሁን ይግቡ">Shop Now</button>
         </div>
     </section>
 
     <!-- Products Section -->
     <main class="container mx-auto px-4 py-6 sm:py-8">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8">
-            <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-0" id="products-title">Featured Products</h2>
-            <a href="#" class="text-alibaba-red hover:underline text-sm sm:text-base mt-2 sm:mt-0" id="view-all-link" style="display: none;">View All →</a>
+            <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-0" id="products-title" data-en="Featured Products" data-am="ተወዳጅ ምርቶች">Featured Products</h2>
+            <a href="#" class="text-alibaba-red hover:underline text-sm sm:text-base mt-2 sm:mt-0" id="view-all-link" style="display: none;" data-en="View All →" data-am="ሁሉንም ይመልከት →">View All →</a>
         </div>
         
         <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
@@ -89,15 +91,15 @@
             <svg class="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
-            <h3 class="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">No products found</h3>
-            <p class="text-gray-500 dark:text-gray-400 text-sm">Try adjusting your search terms.</p>
+            <h3 class="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100 mb-2" data-en="No products found" data-am="ምርቶች አልተገኘውም">No products found</h3>
+            <p class="text-gray-500 dark:text-gray-400 text-sm" data-en="Try adjusting your search terms." data-am="ፍለጋ ቃላትዎን ይቀይሩ ይሞክሩ።">Try adjusting your search terms.</p>
         </div>
     </main>
 
     <!-- Footer: Simple -->
     <footer class="bg-gray-100 dark:bg-gray-800 py-6 sm:py-8 mt-12">
         <div class="container mx-auto px-4 text-center text-sm sm:text-base">
-            <p>&copy; 2025 Elroi Market. All rights reserved. | COD Only</p>
+            <p data-en="&copy; 2025 Elroi Market. All rights reserved. | COD Only" data-am="&copy; 2025 ኤልሮይ ማርኬት። ሁሉም መብቶች የተጠበቀ። | በደረስ ክፍያ">&copy; 2025 Elroi Market. All rights reserved. | COD Only</p>
             <p class="mt-2">developed by yabsra  <a class="underline" href="yabsra.netlify.app">click here</a></p>
         </div>
     </footer>
@@ -105,56 +107,64 @@
     <!-- Scripts -->
     <script src="script.js"></script>
     <script>
-        // Mobile Keyboard Fix: Scroll to results on search input, add padding for keyboard
+        // Language Toggle
         document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('search-input');
-            const productGrid = document.getElementById('product-grid');
-            const productsTitle = document.getElementById('products-title');
-            let initialHeight = window.innerHeight;
-            let keyboardPadding = false;
+            const langToggle = document.getElementById('lang-toggle');
+            let currentLang = 'en';  // Default English
 
-            if (searchInput) {
-                // On input (searching), scroll to products section (below header/hero)
-                searchInput.addEventListener('input', (e) => {
-                    const query = e.target.value;
-                    if (query.length > 0) {
-                        // Small delay for render, then scroll to products
-                        setTimeout(() => {
-                            if (productGrid && productsTitle) {
-                                productsTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            }
-                        }, 100);
+            function switchLanguage(lang) {
+                document.querySelectorAll('[data-en]').forEach(el => {
+                    if (el.textContent.trim() === el.getAttribute(`data-${currentLang}`)?.trim()) {
+                        el.textContent = el.getAttribute(`data-${lang}`);
                     }
                 });
+                // Update placeholders
+                document.querySelectorAll('[data-placeholder-en]').forEach(el => {
+                    el.placeholder = el.getAttribute(`data-placeholder-${lang}`);
+                });
+                // Update title
+                document.title = document.querySelector('title').getAttribute(`data-${lang}`);
+                currentLang = lang;
+                langToggle.textContent = lang === 'en' ? 'አማ' : 'EN';
+            }
 
-                // On focus, optional gentle scroll if needed
-                searchInput.addEventListener('focus', () => {
-                    // Don't force top scroll—let user position
+            if (langToggle) {
+                langToggle.addEventListener('click', () => {
+                    switchLanguage(currentLang === 'en' ? 'am' : 'en');
                 });
             }
 
-            // Detect keyboard open/close via resize
-            window.addEventListener('resize', () => {
-                const currentHeight = window.innerHeight;
-                if (currentHeight < initialHeight * 0.9) {  // Keyboard open
-                    if (!keyboardPadding) {
-                        document.body.style.paddingBottom = '50vh';  // Push up more for results visibility
-                        keyboardPadding = true;
-                        // Scroll to results if searching
-                        if (searchInput && searchInput.value.length > 0) {
-                            setTimeout(() => {
-                                productsTitle?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            }, 200);
-                        }
-                    }
-                } else {  // Keyboard closed
-                    if (keyboardPadding) {
+            // Mobile Keyboard Fix: Precise padding using Visual Viewport API (no per-keystroke scroll)
+            const searchInput = document.getElementById('search-input');
+            if ('visualViewport' in window) {
+                const vv = window.visualViewport;
+                vv.addEventListener('resize', () => {
+                    const keyboardHeight = window.innerHeight - vv.height;
+                    if (keyboardHeight > 100) {  // Threshold for keyboard open
+                        document.body.style.paddingBottom = `${keyboardHeight}px`;
+                    } else {
                         document.body.style.paddingBottom = '0';
-                        keyboardPadding = false;
                     }
-                }
-                initialHeight = currentHeight;
-            });
+                });
+            } else {
+                // Fallback to resize listener
+                let initialHeight = window.innerHeight;
+                window.addEventListener('resize', () => {
+                    const currentHeight = window.innerHeight;
+                    if (currentHeight < initialHeight * 0.9) {
+                        document.body.style.paddingBottom = '50vh';
+                    } else {
+                        document.body.style.paddingBottom = '0';
+                    }
+                    initialHeight = currentHeight;
+                });
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('focus', () => {
+                    searchInput.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
         });
     </script>
 </body>
