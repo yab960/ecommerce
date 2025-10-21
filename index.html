@@ -32,7 +32,7 @@
                 <h1 class="text-xl sm:text-2xl font-bold text-alibaba-red">Elroi Market</h1>
             </div>
             
-            <!-- Search Bar - Full-width on mobile -->
+            <!-- Search Bar - Hidden on mobile, full-width on small, max on larger -->
             <div class="w-full sm:w-auto sm:flex-1 sm:max-w-md sm:mx-4">
                 <div class="relative">
                     <input type="text" id="search-input" placeholder="Search products..." class="w-full px-3 py-2 sm:pl-10 sm:pr-4 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-alibaba-red">
@@ -105,50 +105,56 @@
     <!-- Scripts -->
     <script src="script.js"></script>
     <script>
-        // Mobile Keyboard Fix: Precise padding using Visual Viewport API (no per-keystroke scroll)
+        // Mobile Keyboard Fix: Scroll to results on search input, add padding for keyboard
         document.addEventListener('DOMContentLoaded', () => {
             const searchInput = document.getElementById('search-input');
+            const productGrid = document.getElementById('product-grid');
+            const productsTitle = document.getElementById('products-title');
+            let initialHeight = window.innerHeight;
             let keyboardPadding = false;
 
-            // Visual Viewport API for accurate keyboard height (better than resize)
-            if ('visualViewport' in window) {
-                const vv = window.visualViewport;
-                vv.addEventListener('resize', () => {
-                    const keyboardHeight = window.innerHeight - vv.height;
-                    if (keyboardHeight > 100) {  // Threshold for keyboard open
-                        document.body.style.paddingBottom = `${keyboardHeight}px`;
+            if (searchInput) {
+                // On input (searching), scroll to products section (below header/hero)
+                searchInput.addEventListener('input', (e) => {
+                    const query = e.target.value;
+                    if (query.length > 0) {
+                        // Small delay for render, then scroll to products
+                        setTimeout(() => {
+                            if (productGrid && productsTitle) {
+                                productsTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        }, 100);
+                    }
+                });
+
+                // On focus, optional gentle scroll if needed
+                searchInput.addEventListener('focus', () => {
+                    // Don't force top scroll—let user position
+                });
+            }
+
+            // Detect keyboard open/close via resize
+            window.addEventListener('resize', () => {
+                const currentHeight = window.innerHeight;
+                if (currentHeight < initialHeight * 0.9) {  // Keyboard open
+                    if (!keyboardPadding) {
+                        document.body.style.paddingBottom = '50vh';  // Push up more for results visibility
                         keyboardPadding = true;
-                    } else {
+                        // Scroll to results if searching
+                        if (searchInput && searchInput.value.length > 0) {
+                            setTimeout(() => {
+                                productsTitle?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, 200);
+                        }
+                    }
+                } else {  // Keyboard closed
+                    if (keyboardPadding) {
                         document.body.style.paddingBottom = '0';
                         keyboardPadding = false;
                     }
-                });
-            } else {
-                // Fallback to resize listener
-                let initialHeight = window.innerHeight;
-                window.addEventListener('resize', () => {
-                    const currentHeight = window.innerHeight;
-                    if (currentHeight < initialHeight * 0.9) {
-                        if (!keyboardPadding) {
-                            document.body.style.paddingBottom = '50vh';
-                            keyboardPadding = true;
-                        }
-                    } else {
-                        if (keyboardPadding) {
-                            document.body.style.paddingBottom = '0';
-                            keyboardPadding = false;
-                        }
-                    }
-                    initialHeight = currentHeight;
-                });
-            }
-
-            // Optional: Scroll input into view on focus (gentle, only if needed)
-            if (searchInput) {
-                searchInput.addEventListener('focus', () => {
-                    searchInput.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                });
-            }
+                }
+                initialHeight = currentHeight;
+            });
         });
     </script>
 </body>
